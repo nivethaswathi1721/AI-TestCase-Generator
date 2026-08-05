@@ -7,6 +7,7 @@ from google import genai
 from datetime import datetime
 import os
 import markdown
+from zoneinfo import ZoneInfo
 
 
 # Load environment variables
@@ -136,13 +137,13 @@ Return ONLY markdown.
     
 
     # Current Date & Time
-    now = datetime.now()
+    now = datetime.now(ZoneInfo("Asia/Kolkata"))
     generation_date = now.strftime("%d-%m-%Y")
     generation_time = now.strftime("%I:%M %p")
 
     return render_template(
-        "result.html",
-        result=result,
+          "result.html",
+          result=result,
         generation_date=generation_date,
         generation_time=generation_time
     )
