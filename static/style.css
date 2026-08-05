@@ -1,0 +1,91 @@
+body{
+    background:#f5f7fb;
+}
+
+/* Sticky Header */
+.sticky-header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#f5f7fb;
+    padding-bottom:10px;
+}
+
+/* Cards */
+.card{
+    border-radius:15px;
+}
+
+/* Textarea */
+textarea{
+    resize:none;
+}
+
+/* Scroll only results */
+.result-area{
+    max-height:600px;
+    overflow-y:auto;
+}
+
+/* Table */
+table{
+    width:100%;
+    
+    border-collapse:collapse;
+    table-layout:auto;
+    font-size:14px;
+}
+
+th{
+    background:#0d6efd !important;
+    color:white !important;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:999;
+    padding:10px;
+}
+
+td{
+    vertical-align:top;
+    padding:10px;
+    word-wrap:break-word;
+    overflow-wrap:break-word;
+}
+
+/* Column Widths */
+
+table th:nth-child(1),
+table td:nth-child(1){
+    width:8%;
+}
+
+table th:nth-child(2),
+table td:nth-child(2){
+    width:10%;
+}
+
+table th:nth-child(3),
+table td:nth-child(3){
+    width:18%;
+}
+
+table th:nth-child(4),
+table td:nth-child(4){
+    width:18%;
+}
+
+table th:nth-child(5),
+table td:nth-child(5){
+    width:14%;
+}
+
+table th:nth-child(6),
+table td:nth-child(6){
+    width:24%;
+}
+
+table th:nth-child(7),
+table td:nth-child(7){
+    width:8%;
+}

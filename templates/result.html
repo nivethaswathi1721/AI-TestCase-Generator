@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Generated Test Cases</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body{
+            background:#f5f7fb;
+        }
+
+        .header{
+            position:sticky;
+            top:0;
+            z-index:1000;
+            background:white;
+            padding:15px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        table{
+            width:100%;
+        }
+
+        table th{
+            background:#0d6efd !important;
+            color:white;
+            text-align:center;
+            position:sticky;
+            top:75px;
+        }
+
+        table,th,td{
+            border:1px solid #ddd;
+            border-collapse:collapse;
+        }
+
+        th,td{
+            padding:10px;
+            vertical-align:top;
+        }
+
+        tr:nth-child(even){
+            background:#f8f9fa;
+        }
+
+        .footer{
+            margin-top:40px;
+            padding:20px;
+            text-align:center;
+            color:#6c757d;
+            border-top:1px solid #ddd;
+            font-size:15px;
+        }
+
+        /* Header Buttons */
+
+        .header .btn{
+            margin:2px;
+        }
+
+        /* Mobile Responsive */
+
+        @media (max-width:768px){
+
+            .header{
+                padding:10px;
+            }
+
+            .header h2{
+                font-size:24px;
+                margin-bottom:10px;
+            }
+
+        }
+
+        /* Hide while printing */
+
+        @media print{
+
+            .no-print{
+                display:none !important;
+            }
+
+            .header{
+                position:static;
+                box-shadow:none;
+            }
+
+            table th{
+                position:static;
+            }
+
+            body{
+                background:white;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+        <h2 class="text-primary mb-0">
+            🤖 AI Generated Test Cases
+        </h2>
+
+        <div class="no-print d-flex flex-wrap gap-2 mt-2 mt-md-0">
+
+            <button
+                class="btn btn-primary"
+                id="copyBtn"
+                onclick="copyReport()">
+                📋 Copy Report
+            </button>
+
+            <a
+                href="/export_excel"
+                class="btn btn-success">
+                📊 Export Excel
+            </a>
+
+            <button
+                class="btn btn-danger"
+                onclick="downloadPDF()">
+                📄 Download PDF
+            </button>
+
+            <a
+                href="/"
+                class="btn btn-secondary">
+                ← Back
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container-fluid mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between flex-wrap mb-3">
+
+                <div>
+                    <strong>Generated Report</strong><br>
+                    AI Test Case Generator
+                </div>
+
+                <div class="text-end mt-2">
+                    <strong>Date:</strong> {{ generation_date }}<br>
+                    <strong>Time:</strong> {{ generation_time }}
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div id="reportContent">
+                {{ result|safe }}
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer no-print">
+
+        <strong>AI Test Case Generator</strong><br>
+
+        Powered by Google Gemini AI • Developed using Python Flask, Bootstrap & HTML/CSS
+
+        <br><br>
+
+        © 2026 All Rights Reserved
+
+    </div>
+
+</div>
+
+<script>
+
+function downloadPDF(){
+    window.print();
+}
+
+async function copyReport() {
+
+    const report = document.getElementById("reportContent");
+
+    try {
+
+        await navigator.clipboard.write([
+            new ClipboardItem({
+                "text/html": new Blob([report.innerHTML], {type:"text/html"}),
+                "text/plain": new Blob([report.innerText], {type:"text/plain"})
+            })
+        ]);
+
+        const btn = document.getElementById("copyBtn");
+
+        btn.innerHTML="✅ Copied!";
+        btn.classList.remove("btn-primary");
+        btn.classList.add("btn-success");
+
+        setTimeout(function(){
+
+            btn.innerHTML="📋 Copy Report";
+            btn.classList.remove("btn-success");
+            btn.classList.add("btn-primary");
+
+        },2000);
+
+    }
+    catch(err){
+
+        alert("Copy failed!");
+        console.error(err);
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>
